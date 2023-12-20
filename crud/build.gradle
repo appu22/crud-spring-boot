@@ -1,0 +1,75 @@
+plugins {
+	id 'groovy'
+	id 'org.springframework.boot' version '3.1.5'
+	id 'io.spring.dependency-management' version '1.1.3'
+}
+
+group = 'com.crud'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
+	implementation 'io.springfox:springfox-swagger2:3.0.0'
+	// https://mvnrepository.com/artifact/log4j/log4j
+	implementation 'log4j:log4j:1.2.17'
+	
+	implementation 'org.codehaus.groovy:groovy-json'
+	// https://mvnrepository.com/artifact/org.apache.poi/poi
+	implementation group: 'org.apache.poi', name: 'poi', version: '3.9'
+	// jsoup HTML parser library @ https://jsoup.org/
+	implementation 'org.jsoup:jsoup:1.14.3'
+	
+	// Csv reader...
+	implementation 'com.xlson.groovycsv:groovycsv:1.3'
+	
+	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+	implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
+	// https://mvnrepository.com/artifact/com.itextpdf/itextpdf
+	implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13.2'
+	// https://mvnrepository.com/artifact/com.itextpdf/html2pdf
+	implementation group: 'com.itextpdf', name: 'html2pdf', version: '3.0.1'
+	
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation group: 'org.json', name: 'json', version: '20090211'
+	
+	// actuator
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	
+	//config client
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	implementation 'org.apache.groovy:groovy'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.postgresql:postgresql'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('bootBuildImage') {
+	builder = 'paketobuildpacks/builder-jammy-base:latest'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
