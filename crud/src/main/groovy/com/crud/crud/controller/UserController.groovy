@@ -21,7 +21,7 @@ class UsersController {
 	@RequestMapping("/")
 	def m1() {
 		println "success.."
-		
+
 		// Create an outer JSON object
 		JSONObject outerObject = new JSONObject();
 		// Add a key-value pair to the outer object
@@ -29,64 +29,73 @@ class UsersController {
 		outerObject.put("userchoice", "Filter");
 		outerObject.put("outputtype", "Filter");
 		outerObject.put("filtername", "Filter");
-		
+
 		println "After adding OuterObject "+outerObject
-		
-		// Create an array of inner JSON objects
+
 		JSONArray innerArray = new JSONArray();
-		println "innerArray "+innerArray
-
 		JSONArray innerArray1 = new JSONArray();
-		println "innerArray1 "+innerArray1
-		
-		// Create inner JSON objects and add them to the inner array
-		JSONObject innerObject1 = new JSONObject();
-		println "innerObject1 "+innerObject1
-		
-		//json object for table
-		JSONObject innerObject2 = new JSONObject();
-		println "innerObject3 "+innerObject2
-		
-
 		JSONArray innerArray2 = new JSONArray();
-		println "innerArray2 "+innerArray2
+		JSONArray innerArray3 = new JSONArray();
 		
-		
-		//adding data to innerObject1  
+		JSONObject innerObject1 = new JSONObject();
+		JSONObject innerObject2 = new JSONObject();
+		JSONObject innerObject3 = new JSONObject();
+
 		innerObject1.put("filtername", "Filter");
 		innerObject1.put("filter_status", "Status");
 		println "Step 1 innerObject1 "+innerObject1
-		
+		innerObject1.put("tabletitle", "Filter");
+
 		//adding data from innerObject to inner Array
-		innerArray.put(innerObject1);
-		println "Step 2 innerArray "+innerArray
-		
-		//adding data to innerArrya2
-		innerArray2.put("condition");
-		println "innerArray2 "+innerArray2
-		
-		//adding innerArry2 to innerObject2
-		innerObject2.put("condition", innerArray2);
-		println "innerObject2 "+innerObject2
-		
-		//
-		innerArray.put(innerObject2);
+		innerArray.put(innerObject1)		
+				
 		println "innerArray "+innerArray
 		
-		// Add the inner array to the outer object
+		//innerArray3.put("value/12")
+		
+		//innerObject3.put("Mean", innerArray3)
+		//innerArray2.put(innerObject3);
+		//innerObject2.put("table", innerObject3);
+		
+		println "innerArray2 "+innerArray2
+		innerObject2.put("table", innerArray2);
+		println "innerObject2 "+innerObject2
+
+		innerArray.put(innerObject2);
+		println "innerArray "+innerArray
+
 		outerObject.put("value", innerArray);
 		println "outerObject "+outerObject
-		
+
 		innerArray1.put(innerArray)
-		println "innerArray1 "+innerArray1
 		
+		
+		for(int i=1; i<2; i++) {
+			innerArray= [];
+			innerArray3 = [];
+			innerArray2 = []
+			innerObject1 = []
+			innerObject1.put("tabletitle", "Derive");
+			innerArray.put(innerObject1)
+			innerArray3.put("value/12")
+			innerObject3.put("Condition", innerArray3)
+			innerArray2.put(innerObject3);
+			innerObject2.put("table", innerObject3);
+			innerObject2.put("table", innerArray2);
+			innerArray.put(innerObject2);
+			outerObject.put("value", innerArray);
+			
+			innerArray1.put(innerArray)
+			println "innerArray1 "+innerArray1
+		}
+
 		outerObject.put("value", innerArray1);
 		println "outerObject "+outerObject
 
 		// Convert the outer JSON object to a string
 		String jsonString = outerObject.toString();
 		println 'converting into json String '+jsonString;
-				
+
 		return "index.html"
 	}
 
